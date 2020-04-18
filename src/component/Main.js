@@ -1,64 +1,122 @@
 import React, { Component } from 'react';
+import LocationInfo from './LocationInfo';
 import PersonalInfo from './PersonalInfo';
-import JobDetail from './JobDetails';
 import AllInfo from './AllInfo';
+import ChildInfo from './ChildInfo';
 
 class Main extends Component {
   state = {
     step: 1,
 
     // step 1
-    firstName: '',
-    lastName: '',
+    enuminatorName: '',
+    gothName: '',
+    districtName: '',
+    ucName: '',
+    areaName: '',
+    streetName: '',
+    buildingName: '',
 
     //step 2
-    jobTitle: '',
-    jobCompany: '',
-    jobLocation: '',
+    housenumber: '',
+    codeForHighRiskGroup: [],
+    castName: '',
+    gardianName: '',
+    isThereAnyPragnantWomen: '',
+
+    //step 3
+    childName: '',
+    childNumber: '',
+    dateOfBirth: '',
+    childAge: '',
+    gender: '',
+    vaccinationStatus: [
+      { id: 1, value: 'ipv', isChecked: false },
+      { id: 2, value: 'peniaIII', isChecked: false },
+      { id: 3, value: 'bcg', isChecked: false },
+    ],
   };
 
   showStep = () => {
     const {
       step,
-      firstName,
-      lastName,
-      jobCompany,
-      jobTitle,
-      jobLocation,
+      enuminatorName,
+      gothName,
+      districtName,
+      areaName,
+      ucName,
+      streetName,
+      buildingName,
+      codeForHighRiskGroup,
+      housenumber,
+      castName,
+      gardianName,
+      isThereAnyPragnantWomen,
+      childName,
+      childNumber,
+      dateOfBirth,
+      childAge,
+      gender,
+      vaccinationStatus,
     } = this.state;
     if (step === 1) {
       return (
-        <PersonalInfo
-          handler={this.handlerChange}
+        <LocationInfo
+          // handler={this.handlerChange}
+          handler={this.handlerChangValue}
           nextStep={this.nextStep}
-          firstName={firstName}
-          lastName={lastName}
+          enuminatorName={enuminatorName}
+          gothName={gothName}
+          districtName={districtName}
+          areaName={areaName}
+          ucName={ucName}
+          streetName={streetName}
+          buildingName={buildingName}
         />
       );
     }
 
     if (step === 2) {
       return (
-        <JobDetail
-          handler={this.handlerChange}
+        <PersonalInfo
+          handler={this.handlerChangValue}
           nextStep={this.nextStep}
           previousStep={this.previousStep}
-          jobCompany={jobCompany}
-          jobLocation={jobLocation}
-          jobTitle={jobTitle}
+          codeForHighRiskGroup={codeForHighRiskGroup}
+          castName={castName}
+          housenumber={housenumber}
+          gardianName={gardianName}
+          isThereAnyPragnantWomen={isThereAnyPragnantWomen}
+          childName={childName}
         />
       );
     }
     if (step === 3) {
       return (
+        <ChildInfo
+          nextStep={this.nextStep}
+          handler={this.handlerChangValue}
+          previousStep={this.previousStep}
+          childName={childName}
+          childNumber={childNumber}
+          dateOfBirth={dateOfBirth}
+          childAge={childAge}
+          gender={gender}
+          vaccinationStatus={vaccinationStatus}
+        />
+      );
+    }
+
+    if (step === 4) {
+      return (
         <AllInfo
           handler={this.handlerChange}
           previousStep={this.previousStep}
-          firstName={firstName}
-          lastName={lastName}
-          jobCompany={jobCompany}
-          jobLocation={jobLocation}
-          jobTitle={jobTitle}
+          enuminatorName={enuminatorName}
+          gothName={gothName}
+          housenumber={housenumber}
+          codeForHighRiskGroup={codeForHighRiskGroup}
+          castName={castName}
         />
       );
     }
@@ -83,6 +141,9 @@ class Main extends Component {
       [input]: e.target.value,
     });
   };
+  handlerChangValue = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
   render() {
     console.log(this.state);
@@ -90,7 +151,8 @@ class Main extends Component {
 
     return (
       <div>
-        <h2>Step {step} of 3</h2>
+        <h1>Community Health Worker - CHW </h1>
+        <h2>Step {step} of 4</h2>
         {this.showStep()}
       </div>
     );

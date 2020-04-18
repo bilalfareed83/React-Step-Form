@@ -7,17 +7,17 @@ class AllInfo extends Component {
   };
 
   render() {
-    const {
-      firstName,
-      lastName,
-      jobCompany,
-      jobTitle,
-      jobLocation,
-    } = this.props;
+    // const {
+    //   firstName,
+    //   lastName,
+    //   jobCompany,
+    //   jobTitle,
+    //   jobLocation,
+    // } = this.props;
     return (
       <div>
         <h2>Here is the information you entered:</h2>
-        First Name: <b>{firstName}</b>
+        {/* First Name: <b>{firstName}</b>
         <br />
         Last Name: <b>{lastName}</b>
         <br />
@@ -26,7 +26,7 @@ class AllInfo extends Component {
         Job Title: <b>{jobTitle}</b>
         <br />
         Job Location: <b>{jobLocation}</b>
-        <br />
+        <br /> */}
         <button className="Back" onClick={this.back}>
           Back
         </button>
